@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Randomizer Komen TikTok - Ketikan Manusia Asli</title>
+    <title>Randomizer Komen TikTok - Auto Clicker Friendly</title>
     <style>
         * {
             box-sizing: border-box;
@@ -46,20 +46,22 @@
             font-style: italic;
         }
 
-        .text-box {
+        /* Menggunakan textarea agar lebih ramah auto-select & bypass blokir browser */
+        .text-area-box {
+            width: 100%;
             background-color: #3a506b;
             border-radius: 10px;
             padding: 20px;
-            min-height: 180px;
+            height: 220px;
             text-align: left;
             font-size: 14px;
             line-height: 1.4;
-            white-space: pre-line;
             margin-bottom: 25px;
             border: 1px solid #5bc0be;
             overflow-y: auto;
             color: #ffffff;
             font-weight: 500;
+            resize: none;
         }
 
         .btn-container {
@@ -174,9 +176,10 @@
 
     <div class="container">
         <h1>TikTok Smart Randomizer</h1>
-        <div class="subtitle">Ketikan Real Manusia (50 Variasi Gaul & No Kaku)</div>
+        <div class="subtitle">Bypass Blokir Auto Clicker (50 Variasi Lapak)</div>
         
-        <div class="text-box" id="textBox">Memuat teks...</div>
+        <!-- Mengubah element div menjadi textarea agar auto-copy lancar via bot -->
+        <textarea class="text-area-box" id="textBox" readonly>Memuat teks...</textarea>
 
         <div class="btn-container">
             <button class="btn btn-salin" id="btnSalin">📋 Salin Teks</button>
@@ -200,44 +203,72 @@
         const linkML = "https://whatsapp.com/channel/0029VbB5xTP3GJOzlxzCl20S";
         const linkFF = "https://whatsapp.com/channel/0029Vb6TFJAFy72Jy6JIpv0m";
 
-        // Hook super gaul & to the point menangani masalah customer
-        const hooks = [
-            "lu mau jual akun tp susah laku atau takut kena riper fb?",
-            "butuh akun game spek dewa tp dana mepet pas-pasan?",
-            "daripada akun ml/ff lu nganggur, mending cairin jd duit cash disini",
-            "hari gini masi kena scam pas jb akun? merapat ke grup rekber aman gua",
-            "mau pensi lepas akun pribadi tp ditawar murah bgt ama tengkulak?",
-            "nyari lapak jb akun game yg adminnya fast respon n amanah?",
-            "akun lu bnyk skin limited tp bingung mau dilepas kmana biar cpt?",
-            "plis jgn asal transaksi direct kl gamau duit lu ilang digondol riper",
-            "lu nyari akun tumbal buat pushrank ato emang akun utama spek sultan?",
-            "cape bgt liat bocil kena tipu mulu pas beli akun game, masuk sini"
+        const titles = [
+            "JB AMANAH NOMER SATU",
+            "REKBER AMAN NO RIPER",
+            "SULTAN LAPAK JB AKUN",
+            "TEMPAT JUAL BELI AKUN RESMI",
+            "BUYER SULTAN NAMPUNG AKUN",
+            "GAK USAH TAKUT DI RIPER",
+            "PUSAT JB AKUN GAME HP",
+            "WANT TO SELL / BUY AKUN RESMI",
+            "REKBER FAST RESPON AMANAH",
+            "LAPAK AKUN ANTI HACKBACK"
         ];
 
-        // Solusi ala tongkrongan anak game
-        const solutions = [
-            "grup gua isinya real buyer sultan modal gede, siap nampung akun lu.",
-            "masuk sini aja, bnyk list akun ready murah bgt dr pd marketplace.",
-            "transaksi via admin resmi dijamin aman 100% anti riper anti hb.",
-            "langsung join grup utama gua biar gampang mantau pasaran lapak jb.",
-            "cek aja tstinya tiap hari kl ragu, no drama rill amanah."
+        const layouts = [
+            {
+                grup: "LINK GRUP UTAMA:",
+                line1: "__________",
+                ff: "LINK LAPAK EPEP RESMI:",
+                line2: "__________",
+                ml: "LINK LAPAK ML RESMI:"
+            },
+            {
+                grup: "👉 JOIN GRUP SULTAN:",
+                line1: "====================",
+                ff: "👉 LAPAK JUAL BELI FF:",
+                line2: "====================",
+                ml: "👉 LAPAK JUAL BELI ML:"
+            },
+            {
+                grup: "🔥 GRUP UTAMA REKBER:",
+                line1: "--------------------",
+                ff: "🔥 SALURAN AKUN FF:",
+                line2: "--------------------",
+                ml: "🔥 SALURAN AKUN ML:"
+            },
+            {
+                grup: "👑 LINK GRUP WA:",
+                line1: "~~~~~~~~~~~~~~~",
+                ff: "👑 LINK LAPAK FF:",
+                line2: "~~~~~~~~~~~~~~~",
+                ml: "👑 LINK LAPAK ML:"
+            },
+            {
+                grup: "🔗 MASUK GRUP DI SINI:",
+                line1: "_____________",
+                ff: "📥 LAPAK AKUN FF:",
+                line2: "_____________",
+                ml: "📥 LAPAK AKUN ML:"
+            }
         ];
 
-        // CTA Singkat pake singkatan chat biasa
-        const ctas = [
-            "grup utama:\n👉 " + linkUtama + "\n\nlink lapak akun:\n🛒 ml: " + linkML + "\n🛒 ff: " + linkFF,
-            "grup sultan:\n🔗 " + linkUtama + "\n\nupdate stock:\n📌 lapak ml: " + linkML + "\n📌 lapak ff: " + linkFF,
-            "gas join disini:\n📥 " + linkUtama + "\n\nready stock:\n⚡ ml: " + linkML + "\n⚡ ff: " + linkFF
-        ];
-
-        // Gabungin otomatis jadi 50 variasi randomizer
         const textVariations = [];
-        let count = 0;
-        for (let h = 0; h < hooks.length; h++) {
-            for (let s = 0; s < solutions.length; s++) {
-                let cta = ctas[count % ctas.length];
-                textVariations.push(hooks[h] + ". " + solutions[s] + "\n\n" + cta);
-                count++;
+        let num = 1;
+        
+        for (let t = 0; t < titles.length; t++) {
+            for (let l = 0; l < layouts.length; l++) {
+                let lay = layouts[l];
+                let text = "[ " + num + " ] " + titles[t] + "\n" +
+                           lay.grup + "\n" + linkUtama + "\n" +
+                           lay.line1 + "\n" +
+                           lay.ff + "\n" + linkFF + "\n" +
+                           lay.line2 + "\n" +
+                           lay.ml + "\n" + linkML;
+                           
+                textVariations.push(text);
+                num++;
             }
         }
 
@@ -260,7 +291,7 @@
                 newIndex = Math.floor(Math.random() * textVariations.length);
             }
             currentIndex = newIndex;
-            textBox.textContent = textVariations[currentIndex];
+            textBox.value = textVariations[currentIndex];
         }
 
         function startInterval() {
@@ -279,15 +310,26 @@
             updateText();
         });
 
+        // REVISI UTAMA: Metode salin lawas + Select text untuk bypass keamanan browser pas diklik bot
         btnSalin.addEventListener('click', () => {
-            navigator.clipboard.writeText(textBox.textContent).then(() => {
-                toast.classList.add('show');
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 1500);
-            }).catch(err => {
-                alert('Gagal menyalin teks.');
-            });
+            textBox.select();
+            textBox.setSelectionRange(0, 99999); // Untuk HP/Mobile
+
+            try {
+                // Menggunakan dokumen execCommand lawas yang tembus klik tiruan/auto clicker
+                const sukses = document.execCommand('copy');
+                if (sukses) {
+                    toast.classList.add('show');
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 1500);
+                } else {
+                    alert('Gagal menyalin otomatis.');
+                }
+            } catch (err) {
+                // Fallback darurat jika execCommand gagal
+                navigator.clipboard.writeText(textBox.value);
+            }
         });
 
         btnControl.addEventListener('click', () => {
@@ -318,3 +360,4 @@
     </script>
 </body>
 </html>
+
