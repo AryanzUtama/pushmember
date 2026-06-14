@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randomizer Teks Komen TikTok - 50 Variasi</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b132b;
+            color: #f0f5fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 550px;
+            background-color: #1c2541;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            text-align: center;
+        }
+
+        h1 {
+            color: #48cae4;
+            font-size: 22px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #ae9cff;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .text-box {
+            background-color: #3a506b;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 250px;
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-line;
+            margin-bottom: 25px;
+            border: 1px solid #5bc0be;
+            overflow-y: auto;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: white;
+        }
+
+        .btn-salin {
+            background-color: #ff4757;
+        }
+
+        .btn-salin:hover {
+            background-color: #ee5253;
+        }
+
+        .btn-generate {
+            background-color: #2e86de;
+        }
+
+        .btn-generate:hover {
+            background-color: #54a0ff;
+        }
+
+        .btn-control {
+            width: 100%;
+            background-color: #10ac84;
+            margin-bottom: 25px;
+        }
+
+        .btn-control:hover {
+            background-color: #1dd1a1;
+        }
+
+        .btn-control.paused {
+            background-color: #feca57;
+            color: #222;
+        }
+
+        .timer-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 15px;
+        }
+
+        .timer-container input {
+            width: 65px;
+            padding: 8px;
+            border: 1px solid #5bc0be;
+            background-color: #ffffff;
+            color: #1c2541;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .btn-apply {
+            background-color: #00b4d8;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-apply:hover {
+            background-color: #0096c7;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: #10ac84;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>TikTok Smart Randomizer</h1>
+        <div class="subtitle">Anti-Spam & Solusi Masalah Transaksi (50 Variasi Teks)</div>
+        
+        <div class="text-box" id="textBox">Memuat teks...</div>
+
+        <div class="btn-container">
+            <button class="btn btn-salin" id="btnSalin">📋 Salin Teks</button>
+            <button class="btn btn-generate" id="btnGenerate">🔄 Acak Teks</button>
+        </div>
+
+        <button class="btn btn-control" id="btnControl">⏸️ Start / Pause</button>
+
+        <div class="timer-container">
+            <span>Timer :</span>
+            <input type="number" id="timerInput" value="3" min="1">
+            <span>detik</span>
+            <button class="btn-apply" id="btnApply">Apply</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">Teks Berhasil Disalin!</div>
+
+    <script>
+        const linkUtama = "https://chat.whatsapp.com/E9wCodL7tWK47qMfvbDH51?mode=hqrc";
+        const linkML = "https://whatsapp.com/channel/0029VbB5xTP3GJOzlxzCl20S";
+        const linkFF = "https://whatsapp.com/channel/0029Vb6TFJAFy72Jy6JIpv0m";
+
+        const intros = [
+            "Lu mau jual akun game tapi takut kena tipu rekber gadungan di FB?",
+            "Punya akun FF/ML nganggur tapi bingung lepas ke mana biar cepet laku?",
+            "Lagi nyari spek akun idaman tapi modal pas-pasan?",
+            "Hari gini masih kena scam pas transaksi akun game? Sini merapat gua tunjukin tempat aman.",
+            "Capek banget liat bocil kena tipu mulu pas transaksi direct.",
+            "Mau pensiun main game tapi akunnya pengen dijadikan duit cash segar?",
+            "Butuh akun ML/FF yang speknya mantap tapi harga ramah di kantong?",
+            "Lu jual akun berhari-hari gak laku karena sepi peminat?",
+            "Daripada akun game lu berdebu gak kepake, mending cairin jadi saldo e-wallet di sini.",
+            "Nyari admin rekber yang beneran amanah dan fast respon? Ga pake lama.",
+            "Akun lu banyak skin limited tapi ditawar sadis sama tengkulak?",
+            "Beli akun di sembarang tempat malah kena pishing atau ketipu? Sini masuk komunitas resmi.",
+            "Mau upgrade akun game tapi takut dapet akun siluman yang rawan HB (Hackback)?",
+            "Situs beli akun makin mahal karena biaya admin gila-gilaan? Mending direct lewat grup sultan.",
+            "Lu seller game pemula yang lagi nyari banyak testimoni dan pembeli asli?",
+            "Lu butuh akun spek turnamen atau emang lagi mau lepas akun pribadi?",
+            "Sering ketemu buyer PHP yang ujung-ujungnya ngebatalin sepihak?",
+            "Jangan asal transaksi di sembarang grup WA kalau gak mau rugi belasan juta.",
+            "Tempat kumpulnya para buyer modal gede yang gak pelit nawar harga akun lu.",
+            "Lagi nyari akun tumbal buat bahan push rank atau akun utama sekalian?"
+        ];
+
+        const bodies = [
+            "Grup kita isinya para kolektor dan buyer aktif yang siap nampung akun lu dengan harga waras. Transaksi dijamin aman 100%.",
+            "Di sini tempat kumpulnya para sultan game yang siap bayar tunai akun spek dewa lu. Dijamin bebas dari rekber palsu.",
+            "Komunitas kita nyediain sistem transaksi yang transparan banget, tanpa ribet, dan amanah dari dulu.",
+            "Langsung gabung ke grup utama kita buat dapetin update list akun ready atau buat pasang iklan jualan lu gratis.",
+            "Kita bersihin semua scammer, isinya murni real buyer dan seller terpercaya yang saling bantu jual-beli.",
+            "Banyak diskon akun dari pemain yang lagi butuh uang cepet (BU). Kesempatan emas buat lu yang mau borong.",
+            "Gak usah ribet nyari di marketplace lain yang potongannya gede. Di sini transaksi lancar jaya dan langsung cair.",
+            "Mau ngecek reputasi grup kita? Langsung masuk aja dan pantau testimoninya tiap hari.",
+            "Gak perlu takut di-hackback, admin kita bakal bantu amanin data akun lu sampai tuntas.",
+            "Slot grup selalu penuh tiap hari karena saking banyaknya transaksi sukses di sini."
+        ];
+
+        const call_to_actions = [
+            "Gas amankan slot lu sekarang juga di grup WA utama:\n🔗 " + linkUtama + "\n\nPantau info restock & mabar game favorit lu:\n🎮 ML: " + linkML + "\n🔥 FF: " + linkFF,
+            "Langsung klik link grup utama buat transaksi atau nyari akun:\n👉 " + linkUtama + "\n\nJangan lupa follow saluran update kita:\n📌 Mobile Legends: " + linkML + "\n📌 Free Fire: " + linkFF,
+            "Solusi transaksi aman klik di sini:\n📥 " + linkUtama + "\n\nInfo turnamen, mabar, dan pasaran harga:\n⚡ MLBB: " + linkML + "\n⚡ FF: " + linkFF,
+            "Masuk ke grup utama biar gak ketinggalan update jualan:\n🔥 " + linkUtama + "\n\nSaluran info game terlengkap:\n🚀 ML Channel: " + linkML + "\n🚀 FF Channel: " + linkFF,
+            "Klik link ini sebelum grupnya penuh dikunci admin:\n👑 " + linkUtama + "\n\nIkuti juga berita event terbaru:\n📱 ML: " + linkML + "\n📱 FF: " + linkFF
+        ];
+
+        const contexts = [
+            "Rill terpercaya no drama.", "Admin on 24 jam siap layanin.", "Anti kloningan anti riper.", 
+            "Sultan kumpul di sini semua.", "Gak usah ragu, cek sendiri testimoninya.", "Rekber teraman se-Indonesia."
+        ];
+
+        // Generate 50 unique variations dynamically
+        const textVariations = [];
+        for (let i = 0; i < 50; i++) {
+            let intro = intros[i % intros.length];
+            let body = bodies[i % bodies.length];
+            let cta = call_to_actions[i % call_to_actions.length];
+            let extra = contexts[i % contexts.length];
+            
+            textVariations.push("🔥 " + intro + "\n\n" + body + " " + extra + "\n\n" + cta);
+        }
+
+        let currentIndex = 0;
+        let isRunning = true;
+        let timerDuration = 3000;
+        let intervalId = null;
+
+        const textBox = document.getElementById('textBox');
+        const btnSalin = document.getElementById('btnSalin');
+        const btnGenerate = document.getElementById('btnGenerate');
+        const btnControl = document.getElementById('btnControl');
+        const timerInput = document.getElementById('timerInput');
+        const btnApply = document.getElementById('btnApply');
+        const toast = document.getElementById('toast');
+
+        function updateText() {
+            let newIndex = Math.floor(Math.random() * textVariations.length);
+            while (newIndex === currentIndex && textVariations.length > 1) {
+                newIndex = Math.floor(Math.random() * textVariations.length);
+            }
+            currentIndex = newIndex;
+            textBox.textContent = textVariations[currentIndex];
+        }
+
+        function startInterval() {
+            clearInterval(intervalId);
+            if (isRunning) {
+                intervalId = setInterval(() => {
+                    updateText();
+                }, timerDuration);
+            }
+        }
+
+        updateText();
+        startInterval();
+
+        btnGenerate.addEventListener('click', () => {
+            updateText();
+        });
+
+        btnSalin.addEventListener('click', () => {
+            navigator.clipboard.writeText(textBox.textContent).then(() => {
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 1500);
+            }).catch(err => {
+                alert('Gagal menyalin teks.');
+            });
+        });
+
+        btnControl.addEventListener('click', () => {
+            isRunning = !isRunning;
+            if (isRunning) {
+                btnControl.textContent = "⏸️ Start / Pause";
+                btnControl.classList.remove('paused');
+                startInterval();
+            } else {
+                btnControl.textContent = "▶️ Resume / Mulai";
+                btnControl.classList.add('paused');
+                clearInterval(intervalId);
+            }
+        });
+
+        btnApply.addEventListener('click', () => {
+            const sec = parseInt(timerInput.value);
+            if (sec && sec >= 1) {
+                timerDuration = sec * 1000;
+                if (isRunning) {
+                    startInterval();
+                }
+                alert("Interval berhasil diubah menjadi " + sec + " detik!");
+            } else {
+                alert('Masukkan angka minimal 1 detik!');
+            }
+        });
+    </script>
+</body>
+              </html>
+              
