@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Randomizer Komen TikTok - Singkat & To The Point</title>
+    <title>Randomizer Komen TikTok - Ketikan Manusia Asli</title>
     <style>
         * {
             box-sizing: border-box;
@@ -50,10 +50,10 @@
             background-color: #3a506b;
             border-radius: 10px;
             padding: 20px;
-            min-height: 200px;
+            min-height: 180px;
             text-align: left;
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.4;
             white-space: pre-line;
             margin-bottom: 25px;
             border: 1px solid #5bc0be;
@@ -174,7 +174,7 @@
 
     <div class="container">
         <h1>TikTok Smart Randomizer</h1>
-        <div class="subtitle">Teks Singkat, To The Point, & Anti-Spam</div>
+        <div class="subtitle">Ketikan Real Manusia (50 Variasi Gaul & No Kaku)</div>
         
         <div class="text-box" id="textBox">Memuat teks...</div>
 
@@ -200,43 +200,43 @@
         const linkML = "https://whatsapp.com/channel/0029VbB5xTP3GJOzlxzCl20S";
         const linkFF = "https://whatsapp.com/channel/0029Vb6TFJAFy72Jy6JIpv0m";
 
-        // Kalimat pendek pembuka masalah customer
+        // Hook super gaul & to the point menangani masalah customer
         const hooks = [
-            "Lu jual akun game susah laku atau takut ditipu rekber gadungan?",
-            "Lagi butuh akun game spek GG tapi modal mepet?",
-            "Punya akun ML/FF nganggur? Mending jadiin duit cash segar di sini.",
-            "Hari gini masih ketipu pas beli akun? Sini masuk grup rekber aman.",
-            "Mau lepas akun pribadi tapi ditawar sadis sama tengkulak?",
-            "Nyari lapak jual beli akun game yang adminnya fast respon & amanah?",
-            "Mau pensiun main game? Sini akun lu biar ditampung sama buyer sultan.",
-            "Beli akun di pasaran mahal karena pajak? Direct lewat grup kita aja.",
-            "Akun banyak skin limited tapi bingung mau lepas ke mana?",
-            "Jangan transaksi direct sembarangan kalau gak mau rugi uang."
+            "lu mau jual akun tp susah laku atau takut kena riper fb?",
+            "butuh akun game spek dewa tp dana mepet pas-pasan?",
+            "daripada akun ml/ff lu nganggur, mending cairin jd duit cash disini",
+            "hari gini masi kena scam pas jb akun? merapat ke grup rekber aman gua",
+            "mau pensi lepas akun pribadi tp ditawar murah bgt ama tengkulak?",
+            "nyari lapak jb akun game yg adminnya fast respon n amanah?",
+            "akun lu bnyk skin limited tp bingung mau dilepas kmana biar cpt?",
+            "plis jgn asal transaksi direct kl gamau duit lu ilang digondol riper",
+            "lu nyari akun tumbal buat pushrank ato emang akun utama spek sultan?",
+            "cape bgt liat bocil kena tipu mulu pas beli akun game, masuk sini"
         ];
 
-        // Solusi instan
+        // Solusi ala tongkrongan anak game
         const solutions = [
-            "Grup kita isinya real buyer sultan yang siap nampung akun lu dengan harga waras.",
-            "Masuk sini, banyak list akun ready stock spek dewa harga paling murah.",
-            "Transaksi aman 100% via admin terpercaya, anti riper & bebas drama.",
-            "Sini gabung komunitas jual-beli resmi, amanin transaksi lu sekarang.",
-            "Cek testimoni suksesnya tiap hari di grup utama kita."
+            "grup gua isinya real buyer sultan modal gede, siap nampung akun lu.",
+            "masuk sini aja, bnyk list akun ready murah bgt dr pd marketplace.",
+            "transaksi via admin resmi dijamin aman 100% anti riper anti hb.",
+            "langsung join grup utama gua biar gampang mantau pasaran lapak jb.",
+            "cek aja tstinya tiap hari kl ragu, no drama rill amanah."
         ];
 
-        // CTA Singkat & To the point
+        // CTA Singkat pake singkatan chat biasa
         const ctas = [
-            "Grup Utama:\n👉 " + linkUtama + "\n\nPasar Lapak Akun:\n🛒 ML: " + linkML + "\n🛒 FF: " + linkFF,
-            "Link Grup Sultan:\n🔗 " + linkUtama + "\n\nKatalog Jual-Beli:\n📌 Lapak ML: " + linkML + "\n📌 Lapak FF: " + linkFF,
-            "Gas Masuk Grup:\n📥 " + linkUtama + "\n\nList Akun Ready:\n⚡ Lapak ML: " + linkML + "\n⚡ Lapak FF: " + linkFF
+            "grup utama:\n👉 " + linkUtama + "\n\nlink lapak akun:\n🛒 ml: " + linkML + "\n🛒 ff: " + linkFF,
+            "grup sultan:\n🔗 " + linkUtama + "\n\nupdate stock:\n📌 lapak ml: " + linkML + "\n📌 lapak ff: " + linkFF,
+            "gas join disini:\n📥 " + linkUtama + "\n\nready stock:\n⚡ ml: " + linkML + "\n⚡ ff: " + linkFF
         ];
 
-        // Generate 50 Variasi Teks Pendek
+        // Gabungin otomatis jadi 50 variasi randomizer
         const textVariations = [];
         let count = 0;
         for (let h = 0; h < hooks.length; h++) {
             for (let s = 0; s < solutions.length; s++) {
                 let cta = ctas[count % ctas.length];
-                textVariations.push("🔥 " + hooks[h] + "\n\n" + solutions[s] + "\n\n" + cta);
+                textVariations.push(hooks[h] + ". " + solutions[s] + "\n\n" + cta);
                 count++;
             }
         }
@@ -310,9 +310,9 @@
                 if (isRunning) {
                     startInterval();
                 }
-                alert("Interval berhasil diubah menjadi " + sec + " detik!");
+                alert("Interval diubah: " + sec + " detik!");
             } else {
-                alert('Masukkan angka minimal 1 detik!');
+                alert('Minimal 1 detik!');
             }
         });
     </script>
